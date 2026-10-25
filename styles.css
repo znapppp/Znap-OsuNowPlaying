@@ -55,6 +55,50 @@ body {
   text-align: right;
 }
 
+/* Top "Now Playing" Header Label */
+.np-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 3px;
+  font-size: calc(var(--sub-size) * 0.76);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sub-color);
+  opacity: 0.78;
+  text-shadow: var(--text-shadow);
+  transition: opacity var(--transition-ms) cubic-bezier(0.22, 1, 0.36, 1),
+              transform var(--transition-ms) cubic-bezier(0.22, 1, 0.36, 1),
+              filter var(--transition-ms) cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.np-header.hidden {
+  display: none;
+}
+
+.np-header.hidden-idle {
+  opacity: 0;
+  transform: translateY(6px) scale(0.98);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+.np-note {
+  display: inline-block;
+  font-size: 1.05em;
+  animation: cute-note-float 2.6s ease-in-out infinite;
+}
+
+@keyframes cute-note-float {
+  0%, 100% {
+    transform: translateY(0px) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-2px) rotate(6deg);
+  }
+}
+
 /* Song Card with silky-smooth transition */
 .song-card {
   display: flex;

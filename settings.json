@@ -1,5 +1,21 @@
 [
     {
+        "uniqueID": "ShowNowPlayingLabel",
+        "type": "checkbox",
+        "title": "Show 'Now Playing' Header",
+        "description": "Display cute '♪ Now Playing' label above the song title.",
+        "options": "",
+        "value": true
+    },
+    {
+        "uniqueID": "NowPlayingText",
+        "type": "text",
+        "title": "Header Label Text",
+        "description": "Custom text for the top label (default: Now Playing).",
+        "options": [],
+        "value": "Now Playing"
+    },
+    {
         "uniqueID": "TextAlignment",
         "type": "options",
         "title": "Text Alignment",

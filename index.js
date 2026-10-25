@@ -12,6 +12,8 @@ const socket = new WebSocketManager(WS_HOST);
 
 // Configuration state (supports both Tosu settings.json and URL query parameters for GitHub Pages)
 const config = {
+  ShowNowPlayingLabel: params.has('label') ? params.get('label') !== '0' && params.get('label') !== 'false' : true,
+  NowPlayingText: params.get('labeltext') || 'Now Playing',
   TextAlignment: params.get('align') || 'Center', // Center | Left | Right
   LayoutStyle: params.get('layout') || 'Stacked (2 Lines)', // Stacked (2 Lines) | Single Line
   ShowDifficulty: params.has('diff') ? params.get('diff') !== '0' && params.get('diff') !== 'false' : true,
@@ -42,6 +44,8 @@ const state = {
 
 // DOM Elements
 const rootEl = document.getElementById('now-playing-root');
+const headerEl = document.getElementById('np-header');
+const headerTextEl = document.getElementById('np-label-text');
 const cardEl = document.getElementById('song-card');
 const titleScrollEl = document.getElementById('title-scroll');
 const metaScrollEl = document.getElementById('meta-scroll');
@@ -56,6 +60,16 @@ let transitionRaf = null;
 // Apply visual configuration to CSS variables and classes
 function applyVisualConfig() {
   const rootStyle = document.documentElement.style;
+
+  // 0. "Now Playing" Top Header Label
+  if (headerEl && headerTextEl) {
+    headerTextEl.textContent = config.NowPlayingText || 'Now Playing';
+    if (config.ShowNowPlayingLabel) {
+      headerEl.classList.remove('hidden');
+    } else {
+      headerEl.classList.add('hidden');
+    }
+  }
 
   // 1. Alignment
   const align = String(config.TextAlignment).toLowerCase();
@@ -272,8 +286,10 @@ function updateVisibilityState() {
   if (shouldHideForState()) {
     cardEl.classList.add('hidden-idle');
     cardEl.classList.remove('visible');
+    if (headerEl) headerEl.classList.add('hidden-idle');
   } else {
     cardEl.classList.remove('hidden-idle');
+    if (headerEl) headerEl.classList.remove('hidden-idle');
     if (!cardEl.classList.contains('switching-out') && !cardEl.classList.contains('switching-in-prep')) {
       cardEl.classList.add('visible');
     }
@@ -289,6 +305,8 @@ function toBool(val) {
 function applyTosuSettings(message) {
   if (!message || typeof message !== 'object') return;
 
+  if (message.ShowNowPlayingLabel !== undefined) config.ShowNowPlayingLabel = toBool(message.ShowNowPlayingLabel);
+  if (message.NowPlayingText !== undefined) config.NowPlayingText = message.NowPlayingText;
   if (message.TextAlignment !== undefined) config.TextAlignment = message.TextAlignment;
   if (message.LayoutStyle !== undefined) config.LayoutStyle = message.LayoutStyle;
   if (message.ShowDifficulty !== undefined) config.ShowDifficulty = toBool(message.ShowDifficulty);
