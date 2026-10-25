@@ -3,7 +3,7 @@
         "uniqueID": "ShowNowPlayingLabel",
         "type": "checkbox",
         "title": "Show 'Now Playing' Header",
-        "description": "Display cute '♪ Now Playing' label above the song title.",
+        "description": "Display clean 'NOW PLAYING' label above the song title.",
         "options": "",
         "value": true
     },
