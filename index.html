@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Znap-OsuNowPlaying</title>
+
+  <!-- Cute & Minimal Rounded Fonts (Latin + Japanese + Thai + Korean) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Itim&family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Mali:wght@400;500;600;700&family=Nunito:wght@500;600;700;800&family=Quicksand:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    window.COUNTER_PATH = window.COUNTER_PATH || 'Znap-OsuNowPlaying';
+  </script>
+</head>
+
+<body>
+  <div id="now-playing-root" class="align-center layout-stacked">
+    <div id="song-card" class="song-card visible">
+      <!-- Line 1: Song Title -->
+      <div class="title-wrapper">
+        <div id="title-scroll" class="marquee-container">
+          <span id="song-title" class="song-title">Waiting for osu!...</span>
+        </div>
+      </div>
+
+      <!-- Line 2: Artist & [Difficulty] -->
+      <div class="meta-wrapper">
+        <div id="meta-scroll" class="marquee-container">
+          <span id="song-artist" class="song-artist">tosu overlay</span>
+          <span id="meta-sep" class="meta-sep">•</span>
+          <span id="song-diff" class="song-diff">[Now Playing]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="index.js"></script>
+</body>
+
+</html>

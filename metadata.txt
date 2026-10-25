@@ -1,0 +1,8 @@
+Usecase: ingame, obs-overlay
+Name: Znap-OsuNowPlaying
+Version: 1.0.0
+Author: Znap
+CompatibleWith: tosu
+Resolution: 800x160
+authorLinks: https://github.com/znapppp/Znap-OsuNowPlaying
+Notes: Minimalist & clean Now Playing text overlay for osu!

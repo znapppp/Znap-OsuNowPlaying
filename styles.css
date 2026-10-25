@@ -1,0 +1,215 @@
+:root {
+  --font-family: 'Quicksand', 'M PLUS Rounded 1c', 'Mali', sans-serif;
+  --title-size: 26px;
+  --sub-size: 17px;
+  --title-color: #ffffff;
+  --sub-color: rgba(245, 247, 250, 0.88);
+  --diff-color: rgba(255, 224, 240, 0.95);
+  --max-width: 720px;
+  --transition-ms: 550ms;
+  --text-shadow:
+    0 2px 10px rgba(0, 0, 0, 0.55),
+    0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  overflow: hidden;
+  font-family: var(--font-family);
+}
+
+/* Main alignment wrapper */
+#now-playing-root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 16px 24px;
+}
+
+#now-playing-root.align-center {
+  align-items: center;
+  text-align: center;
+}
+
+#now-playing-root.align-left {
+  align-items: flex-start;
+  text-align: left;
+}
+
+#now-playing-root.align-right {
+  align-items: flex-end;
+  text-align: right;
+}
+
+/* Song Card with silky-smooth transition */
+.song-card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-width: var(--max-width);
+  width: fit-content;
+  will-change: transform, opacity, filter;
+  transition:
+    opacity var(--transition-ms) cubic-bezier(0.22, 1, 0.36, 1),
+    transform var(--transition-ms) cubic-bezier(0.22, 1, 0.36, 1),
+    filter var(--transition-ms) cubic-bezier(0.22, 1, 0.36, 1);
+  opacity: 0;
+  transform: translateY(8px) scale(0.985);
+  filter: blur(8px);
+}
+
+#now-playing-root.align-center .song-card {
+  align-items: center;
+}
+
+#now-playing-root.align-left .song-card {
+  align-items: flex-start;
+}
+
+#now-playing-root.align-right .song-card {
+  align-items: flex-end;
+}
+
+/* Active visible state */
+.song-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
+}
+
+/* Outgoing transition state (floats slightly up & blurs out) */
+.song-card.switching-out {
+  opacity: 0;
+  transform: translateY(-7px) scale(0.985);
+  filter: blur(8px);
+}
+
+/* Incoming start state (starts slightly below & blurred) */
+.song-card.switching-in-prep {
+  transition: none !important;
+  opacity: 0;
+  transform: translateY(8px) scale(0.985);
+  filter: blur(8px);
+}
+
+/* Hidden when idle */
+.song-card.hidden-idle {
+  opacity: 0;
+  transform: translateY(6px) scale(0.98);
+  filter: blur(6px);
+  pointer-events: none;
+}
+
+/* Single-line layout mode */
+#now-playing-root.layout-single .song-card {
+  flex-direction: row;
+  align-items: baseline;
+  gap: 10px;
+}
+
+/* Wrappers for overflow / smooth marquee */
+.title-wrapper,
+.meta-wrapper {
+  max-width: var(--max-width);
+  overflow: hidden;
+  position: relative;
+  /* Soft edge fade mask only when scrolling */
+}
+
+.title-wrapper.is-scrolling,
+.meta-wrapper.is-scrolling {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 4%,
+    black 96%,
+    transparent 100%
+  );
+}
+
+.marquee-container {
+  display: inline-flex;
+  align-items: baseline;
+  white-space: nowrap;
+  gap: 6px;
+  padding: 2px 4px;
+  will-change: transform;
+}
+
+.marquee-container.animate-marquee {
+  animation: gentle-scroll var(--scroll-duration, 12s) ease-in-out infinite alternate;
+}
+
+@keyframes gentle-scroll {
+  0%,
+  18% {
+    transform: translateX(0);
+  }
+  82%,
+  100% {
+    transform: translateX(var(--scroll-distance, 0px));
+  }
+}
+
+/* Typography */
+.song-title {
+  font-size: var(--title-size);
+  font-weight: 700;
+  color: var(--title-color);
+  letter-spacing: 0.015em;
+  line-height: 1.28;
+  text-shadow: var(--text-shadow);
+}
+
+.song-artist {
+  font-size: var(--sub-size);
+  font-weight: 600;
+  color: var(--sub-color);
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  text-shadow: var(--text-shadow);
+}
+
+.meta-sep {
+  font-size: calc(var(--sub-size) * 0.85);
+  color: var(--sub-color);
+  opacity: 0.65;
+  margin: 0 2px;
+  text-shadow: var(--text-shadow);
+}
+
+.song-diff {
+  font-size: calc(var(--sub-size) * 0.96);
+  font-weight: 700;
+  color: var(--diff-color);
+  letter-spacing: 0.015em;
+  line-height: 1.35;
+  opacity: 0.95;
+  text-shadow: var(--text-shadow);
+}
+
+.song-diff.hidden,
+.meta-sep.hidden {
+  display: none;
+}

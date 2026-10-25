@@ -1,0 +1,122 @@
+[
+    {
+        "uniqueID": "TextAlignment",
+        "type": "options",
+        "title": "Text Alignment",
+        "description": "Horizontal alignment of the Now Playing text.",
+        "options": [
+            "Center",
+            "Left",
+            "Right"
+        ],
+        "value": "Center"
+    },
+    {
+        "uniqueID": "LayoutStyle",
+        "type": "options",
+        "title": "Layout Style",
+        "description": "Stacked (2 Lines: Title on top, Artist + [Diff] below) or Single Line (Artist - Title [Diff]).",
+        "options": [
+            "Stacked (2 Lines)",
+            "Single Line"
+        ],
+        "value": "Stacked (2 Lines)"
+    },
+    {
+        "uniqueID": "ShowDifficulty",
+        "type": "checkbox",
+        "title": "Show [Difficulty]",
+        "description": "Display the beatmap difficulty name in brackets [Difficulty].",
+        "options": "",
+        "value": true
+    },
+    {
+        "uniqueID": "UseUnicode",
+        "type": "checkbox",
+        "title": "Use Original Language (Unicode)",
+        "description": "Show original Japanese/Korean/Chinese titles instead of Romanized English.",
+        "options": "",
+        "value": false
+    },
+    {
+        "uniqueID": "FontStyle",
+        "type": "options",
+        "title": "Cute Font Style",
+        "description": "Choose a cute, clean rounded font style.",
+        "options": [
+            "Rounded Clean (M PLUS / Quicksand)",
+            "Cute Handwritten (Mali / Itim)",
+            "Soft Bubble (Nunito)"
+        ],
+        "value": "Rounded Clean (M PLUS / Quicksand)"
+    },
+    {
+        "uniqueID": "TitleFontSize",
+        "type": "number",
+        "title": "Title Font Size [px]",
+        "description": "Font size of the song title in pixels (default: 26).",
+        "options": [],
+        "value": 26
+    },
+    {
+        "uniqueID": "SubFontSize",
+        "type": "number",
+        "title": "Artist & Difficulty Font Size [px]",
+        "description": "Font size of the artist and difficulty line in pixels (default: 17).",
+        "options": [],
+        "value": 17
+    },
+    {
+        "uniqueID": "TextColor",
+        "type": "text",
+        "title": "Title Text Color [HEX]",
+        "description": "Main title color (e.g. #FFFFFF).",
+        "options": [],
+        "value": "#FFFFFF"
+    },
+    {
+        "uniqueID": "SubTextColor",
+        "type": "text",
+        "title": "Artist & Difficulty Color [HEX]",
+        "description": "Secondary text color (e.g. #F2F4F8).",
+        "options": [],
+        "value": "#F2F4F8"
+    },
+    {
+        "uniqueID": "ShadowStrength",
+        "type": "options",
+        "title": "Text Shadow / Readability",
+        "description": "Soft drop shadow behind text so it stays readable on any background.",
+        "options": [
+            "Soft Clean",
+            "Strong Contrast",
+            "Pastel Glow",
+            "None"
+        ],
+        "value": "Soft Clean"
+    },
+    {
+        "uniqueID": "MaxWidth",
+        "type": "number",
+        "title": "Max Text Width [px]",
+        "description": "Maximum width before long titles smoothly scroll (default: 720).",
+        "options": [],
+        "value": 720
+    },
+    {
+        "uniqueID": "TransitionDuration",
+        "type": "number",
+        "title": "Transition Duration [ms]",
+        "description": "Smooth blur + fade transition speed when changing songs (default: 550).",
+        "options": [],
+        "value": 550
+    },
+    {
+        "uniqueID": "HideWhenIdle",
+        "type": "checkbox",
+        "title": "Gameplay Only",
+        "description": "Only show Now Playing during gameplay (hide in song selection / menu).",
+        "options": "",
+        "value": false
+    }
+]
